@@ -13,11 +13,11 @@ const projects: Project[] = [
   {
     title: "AutoPawPrints",
     blurb:
-      "An internal commerce workflow for turning Etsy pet portrait orders into a structured, AI-assisted production pipeline.",
+      "A workflow app for handling Etsy pet portrait orders from payment through upload, review, and delivery.",
     outcome:
-      "Connected order intake, secure customer uploads, admin review, rerendering, reminders, and digital delivery in one flow.",
+      "It pulls the order flow into one place instead of juggling messages, uploads, approvals, and fulfillment by hand.",
     details:
-      "Built around Etsy OAuth and order-paid webhooks, with tokenized upload links, Prisma-backed persistence, and image processing that can use OpenAI, sharp, and pdf-lib.",
+      "The app uses Etsy OAuth and webhooks, token-based upload links, Prisma with Postgres, and image processing with OpenAI, sharp, and pdf-lib.",
     stack: ["Next.js 15", "TypeScript", "Prisma", "Postgres", "BullMQ", "OpenAI"],
     href: "https://github.com/pawprintstogoco-ship-it/autopawprints",
   },
@@ -196,7 +196,10 @@ export default function App() {
         >
           <div>
             <span className="eyebrow">Contact</span>
-            <h2>If you’re building a product and need someone who cares about both UI and implementation, let’s talk.</h2>
+            <h2>
+              If you&apos;re building a product and need someone who cares about both UI and
+              implementation, let&apos;s talk.
+            </h2>
           </div>
           <div className="contact-links">
             <a href="https://github.com/kevnotdev">github.com/kevnotdev</a>
