@@ -26,7 +26,7 @@ const projects: Project[] = [
 const stats = [
   { value: "1", label: "Featured case study" },
   { value: "100%", label: "Static-site deployable" },
-  { value: "Live", label: "AI-assisted workflow thinking" },
+  { value: "AI", label: "Codex + Claude Code workflow" },
 ];
 
 const container = {
@@ -48,7 +48,8 @@ const item = {
 export default function App() {
   return (
     <div className="page-shell">
-      <div className="noise" aria-hidden="true" />
+      <div className="page-wash" aria-hidden="true" />
+      <div className="grid-lines" aria-hidden="true" />
       <header className="topbar">
         <div className="brand">
           <span className="brand-mark" />
@@ -72,22 +73,26 @@ export default function App() {
             Product-minded developer
           </motion.p>
 
+          <motion.div className="tool-pill" variants={item}>
+            Building with TypeScript, Codex, and Claude Code
+          </motion.div>
+
           <motion.h1 variants={item}>
-            I build clean, modern interfaces that feel premium and ship reliably on the web.
+            I build clean web products with sharp UI, strong workflows, and modern AI-assisted execution.
           </motion.h1>
 
           <motion.p className="hero-copy" variants={item}>
             I build product-focused web experiences with a strong UX bar and a bias toward real
-            operational usefulness. This site is deployed as a static frontend, so it runs cleanly
-            on GitHub Pages while still using modern React, TypeScript, and Framer Motion.
+            operational usefulness. This portfolio runs as a static frontend on GitHub Pages while
+            still using React, TypeScript, and Framer Motion under the hood.
           </motion.p>
 
           <motion.div className="hero-actions" variants={item}>
             <a className="button button-primary" href="#work">
               View selected work
             </a>
-            <a className="button button-secondary" href="#contact">
-              Let&apos;s talk
+            <a className="button button-secondary" href="https://github.com/kevnotdev">
+              Open GitHub
             </a>
           </motion.div>
 
@@ -110,7 +115,7 @@ export default function App() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             <span className="card-label">Approach</span>
-            <h2>Design-forward engineering with a bias toward clarity.</h2>
+            <h2>Design-forward engineering with a clean product sensibility.</h2>
             <p>
               I like products that look intentional, move with restraint, and make complicated
               things feel simple. My focus is building interfaces that are both visually sharp and
@@ -127,8 +132,8 @@ export default function App() {
           >
             <span className="card-label">Stack</span>
             <p>
-              TypeScript, React, Next.js, backend workflow integration, and frontend systems that
-              feel polished instead of improvised.
+              TypeScript, React, Next.js, backend workflow integration, and AI tooling like Codex
+              and Claude Code to move faster without lowering quality.
             </p>
           </motion.article>
 
@@ -191,7 +196,7 @@ export default function App() {
         >
           <div>
             <span className="eyebrow">Contact</span>
-            <h2>Have a product, portfolio, or frontend system that needs a higher bar?</h2>
+            <h2>Need a cleaner product surface, better workflow UX, or faster execution?</h2>
           </div>
           <div className="contact-links">
             <a href="https://github.com/kevnotdev">github.com/kevnotdev</a>
