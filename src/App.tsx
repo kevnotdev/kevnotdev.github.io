@@ -24,9 +24,9 @@ const projects: Project[] = [
 ];
 
 const stats = [
-  { value: "1", label: "Featured case study" },
-  { value: "100%", label: "Static-site deployable" },
-  { value: "AI", label: "Codex + Claude Code workflow" },
+  { value: "1", label: "Project featured so far" },
+  { value: "TS", label: "TypeScript-first builds" },
+  { value: "AI", label: "Codex + Claude Code in the workflow" },
 ];
 
 const container = {
@@ -70,21 +70,21 @@ export default function App() {
           animate="show"
         >
           <motion.p className="eyebrow" variants={item}>
-            Product-minded developer
+            Developer portfolio
           </motion.p>
 
           <motion.div className="tool-pill" variants={item}>
-            Building with TypeScript, Codex, and Claude Code
+            I use TypeScript, Codex, and Claude Code to build faster and iterate more.
           </motion.div>
 
           <motion.h1 variants={item}>
-            I build clean web products with sharp UI, strong workflows, and modern AI-assisted execution.
+            I build web products that are clean, useful, and easy to work with.
           </motion.h1>
 
           <motion.p className="hero-copy" variants={item}>
-            I build product-focused web experiences with a strong UX bar and a bias toward real
-            operational usefulness. This portfolio runs as a static frontend on GitHub Pages while
-            still using React, TypeScript, and Framer Motion under the hood.
+            Most of my work sits somewhere between product UI and internal tools. I care about
+            clear interfaces, smooth flows, and shipping things that actually help the people using
+            them.
           </motion.p>
 
           <motion.div className="hero-actions" variants={item}>
@@ -115,11 +115,10 @@ export default function App() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             <span className="card-label">Approach</span>
-            <h2>Design-forward engineering with a clean product sensibility.</h2>
+            <h2>I like software that feels simple on the surface and solid underneath.</h2>
             <p>
-              I like products that look intentional, move with restraint, and make complicated
-              things feel simple. My focus is building interfaces that are both visually sharp and
-              operationally solid, especially when they sit close to real business workflows.
+              I tend to focus on products with a lot of moving parts: dashboards, workflows,
+              internal tools, and customer-facing flows that need to be clear without feeling heavy.
             </p>
           </motion.article>
 
@@ -132,8 +131,9 @@ export default function App() {
           >
             <span className="card-label">Stack</span>
             <p>
-              TypeScript, React, Next.js, backend workflow integration, and AI tooling like Codex
-              and Claude Code to move faster without lowering quality.
+              I mostly work in TypeScript with React and Next.js. I also use tools like Codex and
+              Claude Code as part of the build process, especially for iteration and implementation
+              speed.
             </p>
           </motion.article>
 
@@ -146,8 +146,8 @@ export default function App() {
           >
             <span className="card-label">Delivery</span>
             <p>
-              Fast static deployment for the portfolio itself, with room to showcase more complex
-              app work behind it.
+              This site is a static portfolio on GitHub Pages, but the projects I want to showcase
+              here are fuller app builds with backend logic, workflows, and integrations.
             </p>
           </motion.article>
         </section>
@@ -155,7 +155,7 @@ export default function App() {
         <section className="projects-section" id="work">
           <div className="section-heading">
             <span className="eyebrow">Selected work</span>
-            <h2>Projects presented like product case studies, not just repo links.</h2>
+            <h2>Here’s one project that shows the kind of work I like doing.</h2>
           </div>
 
           <motion.div
@@ -170,7 +170,7 @@ export default function App() {
                 <div className="project-glow" aria-hidden="true" />
                 <div className="project-header">
                   <span className="card-label">Case study</span>
-                  <a href={project.href}>Open</a>
+                  <a href={project.href}>GitHub</a>
                 </div>
                 <h3>{project.title}</h3>
                 <p>{project.blurb}</p>
@@ -196,7 +196,7 @@ export default function App() {
         >
           <div>
             <span className="eyebrow">Contact</span>
-            <h2>Need a cleaner product surface, better workflow UX, or faster execution?</h2>
+            <h2>If you’re building a product and need someone who cares about both UI and implementation, let’s talk.</h2>
           </div>
           <div className="contact-links">
             <a href="https://github.com/kevnotdev">github.com/kevnotdev</a>
