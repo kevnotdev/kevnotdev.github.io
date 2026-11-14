@@ -55,20 +55,68 @@ const process = [
   { n: "04", title: "Refine", body: "Use it, watch others use it, and polish the rough edges until it feels effortless." },
 ];
 
-const highlights = [
+type Feature = {
+  id: string;
+  name: string;
+  kicker: string;
+  tagline: string;
+  description: string;
+  points: string[];
+  stack: string;
+  href: string;
+  note?: string;
+};
+
+const features: Feature[] = [
   {
-    title: "One place for every order.",
-    body: "Payment, uploads, approvals, and delivery live in a single flow instead of scattered across messages and spreadsheets.",
+    id: "paw",
+    name: "AutoPawPrints",
+    kicker: "Order workflow · Web app",
+    tagline: "A messy, manual process, made calm.",
+    description:
+      "A workflow app for Etsy pet portrait orders, from payment through upload, review, and delivery.",
+    points: [
+      "Payment, uploads, approvals, and delivery live in one flow instead of scattered messages.",
+      "Customers send their photos through a secure, token-based link.",
+      "Every portrait passes a clear review step before it goes out.",
+    ],
+    stack: "Next.js 15 · TypeScript · Prisma · Postgres · BullMQ · OpenAI",
+    href: "https://github.com/pawprintstogoco-ship-it/autopawprints",
   },
   {
-    title: "Uploads that just work.",
-    body: "Customers get a secure, token-based link to send their photos. Nothing extra to figure out.",
+    id: "nset",
+    name: "nSet",
+    kicker: "Strength training · iOS & Android",
+    tagline: "Log the work. See the progress.",
+    description:
+      "An nSuns-style training tracker designed to be fast enough to use between sets.",
+    points: [
+      "Prescriptions generated from your training maxes, with the math out in the open.",
+      "Local-first, so there’s no account to create before you can start logging.",
+      "Compare lifts with friends, built privacy-first instead of as a public feed.",
+    ],
+    stack: "Expo · React Native · TypeScript · Expo Router · SQLite · Supabase",
+    href: "https://github.com/kevnotdev/nset",
   },
   {
-    title: "Review before it ships.",
-    body: "Every portrait passes through a clear review step, so nothing goes out the door by accident.",
+    id: "tax",
+    name: "TaxPilot",
+    kicker: "Small business tax · Web app",
+    tagline: "Corporate taxes, in plain language.",
+    description:
+      "A guided T2 corporate tax return for small incorporated businesses in Canada.",
+    points: [
+      "One plain-language question per screen, from income to the year-end balance sheet.",
+      "Reads last year’s return from a PDF and shows which line each carried number came from.",
+      "Shows what the tax rules saved you, and checks that hold filing until the books tie.",
+    ],
+    stack: "Next.js 15 · React 19 · TypeScript · Tailwind · pdf.js",
+    href: "https://github.com/kevnotdev/sbtax",
+    note: "In development. Filing is a labelled demo until CRA certification.",
   },
 ];
+
+const inTheWorks = ["Ohiru", "YourTurn", "Cue", "Shot Arc"];
 
 const pipeline = ["Paid", "Upload", "Review", "Delivered"];
 
@@ -78,7 +126,6 @@ const orders = [
   { id: "4816", pet: "Pepper", kind: "Border collie", step: 1 },
 ];
 
-const projectHref = "https://github.com/pawprintstogoco-ship-it/autopawprints";
 
 function Icon({ name }: { name: string }) {
   const common = {
@@ -127,6 +174,108 @@ function Chevron() {
     <svg width="9" height="14" viewBox="0 0 9 14" fill="none" aria-hidden="true">
       <path d="m1.5 1.5 5.5 5.5-5.5 5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
+  );
+}
+
+function PawVisual() {
+  return (
+    <div className="v-paw">
+      <div className="v-card">
+        <div className="v-card-head">
+          <strong>Today</strong>
+          <span>3 orders</span>
+        </div>
+        {orders.map((o) => (
+          <div className="v-row" key={o.id}>
+            <div className="avatar">{o.pet[0]}</div>
+            <div className="row-meta">
+              <strong>{o.pet}</strong>
+              <small>{o.kind}</small>
+            </div>
+            <span className={`badge b${o.step}`}>{pipeline[o.step]}</span>
+          </div>
+        ))}
+        <div className="v-progress">
+          <span style={{ width: "72%" }} />
+        </div>
+        <small className="v-foot">72% of this week’s orders delivered</small>
+      </div>
+    </div>
+  );
+}
+
+function NsetVisual() {
+  const [set, setSet] = useState(3);
+  useEffect(() => {
+    const id = window.setInterval(() => setSet((s) => (s + 1) % 5), 1600);
+    return () => window.clearInterval(id);
+  }, []);
+  const weights = [225, 245, 265, 275, 255];
+
+  return (
+    <div className="v-nset">
+      <div className="phone">
+        <div className="phone-status">
+          <span>9:41</span>
+          <span>●●●</span>
+        </div>
+        <p className="phone-title">Bench Press</p>
+        <p className="phone-sub">Week 3 · Day 1</p>
+        <div className="seg">
+          <span className="on">Bench</span>
+          <span>Squat</span>
+          <span>Deadlift</span>
+        </div>
+        <div className="marks">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <span key={i} className={i === set ? "dot" : "bar"} />
+          ))}
+        </div>
+        <p className="phone-set">
+          Set {set + 1} of 5
+        </p>
+        <div className="stepper">
+          <span>−</span>
+          <strong>
+            {weights[set]} <small>lb</small>
+          </strong>
+          <span>+</span>
+        </div>
+        <div className="phone-btn">Complete Set</div>
+      </div>
+    </div>
+  );
+}
+
+function TaxVisual() {
+  const steps = ["Company", "Income", "Expenses", "Equipment", "Balances", "Review", "File"];
+  return (
+    <div className="v-tax">
+      <div className="v-card">
+        <div className="tax-steps">
+          {steps.map((s, i) => (
+            <span key={s} className={i < 4 ? "done" : i === 4 ? "now" : ""}>
+              {s}
+            </span>
+          ))}
+        </div>
+        <p className="tax-q">Do the books tie?</p>
+        <div className="tax-cols">
+          <div>
+            <small>Has</small>
+            <strong>$84,210</strong>
+          </div>
+          <div className="tax-eq">=</div>
+          <div>
+            <small>Owes, plus what’s yours</small>
+            <strong>$84,210</strong>
+          </div>
+        </div>
+        <div className="tax-ok">
+          <span>✓</span> Balanced. You’re ready to review.
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -304,31 +453,49 @@ export default function App() {
         <section className="work" id="work">
           <Reveal className="section-head">
             <p className="kicker">Selected work</p>
-            <h2>AutoPawPrints.</h2>
-            <p className="lead">
-              A messy, manual order process, made calm. A workflow app for Etsy pet portrait
-              orders, from payment through upload, review, and delivery.
-            </p>
-            <a className="link" href={projectHref}>
-              View on GitHub <Chevron />
-            </a>
+            <h2>Things I’ve designed and built.</h2>
+            <p>Different problems, same goal: make the hard part feel easy.</p>
           </Reveal>
 
-          <div className="highlights">
-            {highlights.map((h, i) => (
-              <Reveal key={h.title} delay={i * 0.08} className="highlight">
-                <h3>{h.title}</h3>
-                <p>{h.body}</p>
+          <div className="features">
+            {features.map((f, i) => (
+              <Reveal key={f.id} className={`feature feature-${f.id} ${i % 2 ? "flip" : ""}`}>
+                <div className="feature-text">
+                  <p className="feature-kicker">{f.kicker}</p>
+                  <h3>{f.name}</h3>
+                  <p className="feature-tagline">{f.tagline}</p>
+                  <p className="feature-desc">{f.description}</p>
+                  <ul>
+                    {f.points.map((pt) => (
+                      <li key={pt}>{pt}</li>
+                    ))}
+                  </ul>
+                  <p className="feature-stack">{f.stack}</p>
+                  {f.note && <p className="feature-note">{f.note}</p>}
+                  <a className="link" href={f.href}>
+                    View on GitHub <Chevron />
+                  </a>
+                </div>
+                <div className="feature-visual" aria-hidden="true">
+                  {f.id === "paw" && <PawVisual />}
+                  {f.id === "nset" && <NsetVisual />}
+                  {f.id === "tax" && <TaxVisual />}
+                </div>
               </Reveal>
             ))}
           </div>
 
-          <Reveal className="specs">
-            <span>Built with</span>
-            <p>
-              Next.js 15 · TypeScript · Prisma · Postgres · BullMQ · OpenAI · Etsy OAuth &amp;
-              webhooks · sharp · pdf-lib
-            </p>
+          <Reveal className="works">
+            <p className="works-label">Also in the works</p>
+            <div className="works-grid">
+              {inTheWorks.map((name) => (
+                <div className="works-tile" key={name}>
+                  <span className="works-mono">{name[0]}</span>
+                  <strong>{name}</strong>
+                  <small>Private project</small>
+                </div>
+              ))}
+            </div>
           </Reveal>
         </section>
 
@@ -365,8 +532,8 @@ export default function App() {
               <a className="pill" href="https://github.com/kevnotdev">
                 Say hello on GitHub
               </a>
-              <a className="link" href={projectHref}>
-                View AutoPawPrints <Chevron />
+              <a className="link" href="#work">
+                See the work <Chevron />
               </a>
             </div>
           </Reveal>
