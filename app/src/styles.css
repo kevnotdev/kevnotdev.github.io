@@ -1459,3 +1459,37 @@ h3 {
 .contact .hero-links {
   margin-top: 36px;
 }
+
+/* yourturn hero shot */
+.host-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.host-head strong {
+  display: block;
+  font-size: 1.05rem;
+}
+
+.host-head small {
+  color: #8f8c87;
+  font-size: 0.8rem;
+}
+
+.host-add {
+  flex: none;
+  padding: 8px 14px;
+  border-radius: 9px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status.s2 {
+  color: #2f6fd0;
+}
