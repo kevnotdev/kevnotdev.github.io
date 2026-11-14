@@ -67,7 +67,7 @@ type Feature = {
 const features: Feature[] = [
   {
     id: "turn",
-    name: "YourTurn",
+    name: "yourturn",
     kicker: "Restaurant host stand · Web app",
     tagline: "Reservations and walk-ins, one host stand.",
     description:
@@ -277,11 +277,18 @@ function TaxVisual() {
   );
 }
 
+const hostParties = [
+  { name: "Lee", size: 4, wait: "Ready" },
+  { name: "Okafor", size: 2, wait: "12 min" },
+  { name: "Martin", size: 6, wait: "25 min" },
+  { name: "Silva", size: 3, wait: "31 min" },
+];
+
 function ProductShot() {
-  const [active, setActive] = useState(0);
+  const [texted, setTexted] = useState(false);
 
   useEffect(() => {
-    const id = window.setInterval(() => setActive((a) => (a + 1) % pipeline.length), 1800);
+    const id = window.setInterval(() => setTexted((t) => !t), 2200);
     return () => window.clearInterval(id);
   }, []);
 
@@ -291,43 +298,38 @@ function ProductShot() {
         <span />
         <span />
         <span />
-        <div className="device-url">autopawprints.app/orders</div>
+        <div className="device-url">yourturn.to</div>
       </div>
       <div className="device-body">
         <aside className="device-side">
-          <strong>Orders</strong>
-          <span className="is-on">All orders</span>
-          <span>Awaiting upload</span>
-          <span>In review</span>
-          <span>Delivered</span>
+          <strong>Tonight</strong>
+          <span className="is-on">Waitlist</span>
+          <span>Bookings</span>
+          <span>Seated</span>
         </aside>
         <div className="device-main">
-          <div className="steps">
-            {pipeline.map((s, i) => (
-              <div key={s} className={`step ${i <= active ? "on" : ""}`}>
-                <div className="step-dot">{i < active ? "✓" : i + 1}</div>
-                <span>{s}</span>
-              </div>
-            ))}
-            <div className="steps-line">
-              <motion.div
-                className="steps-fill"
-                animate={{ width: `${(active / (pipeline.length - 1)) * 100}%` }}
-                transition={{ duration: 0.8, ease }}
-              />
+          <div className="host-head">
+            <div>
+              <strong>Waitlist</strong>
+              <small>4 parties · about 14 min average wait</small>
             </div>
+            <span className="host-add">Add walk-in</span>
           </div>
           <div className="rows">
-            {orders.map((o) => (
-              <div className="row" key={o.id}>
-                <div className="avatar">{o.pet[0]}</div>
+            {hostParties.map((p, i) => (
+              <div className="row" key={p.name}>
+                <div className="turn-size">{p.size}</div>
                 <div className="row-meta">
-                  <strong>{o.pet}</strong>
-                  <small>
-                    {o.kind} · #{o.id}
-                  </small>
+                  <strong>{p.name}</strong>
+                  <small>Party of {p.size}</small>
                 </div>
-                <span className={`status s${o.step}`}>{pipeline[o.step]}</span>
+                {i === 0 ? (
+                  <span className={`status ${texted ? "s2" : "s3"}`}>
+                    {texted ? "Text sent" : "Table ready"}
+                  </span>
+                ) : (
+                  <span className="status s0">{p.wait}</span>
+                )}
               </div>
             ))}
           </div>
@@ -527,8 +529,8 @@ export default function App() {
               <a className="btn" href="https://github.com/kevnotdev">
                 github.com/kevnotdev
               </a>
-              <a className="link" href="https://github.com/pawprintstogoco-ship-it/autopawprints">
-                View AutoPawPrints <Chevron />
+              <a className="link" href="https://yourturn.to">
+                Visit yourturn.to <Chevron />
               </a>
             </div>
           </Reveal>
